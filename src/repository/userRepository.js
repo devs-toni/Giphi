@@ -1,5 +1,5 @@
 import { logger } from "../configuration/logger/winston.js";
-import  { userModel } from "./schema/User.js"
+import { userModel } from "./schema/User.js"
 
 export const userRepository = {
 
@@ -8,10 +8,12 @@ export const userRepository = {
 
       const userExist = await userModel.findOne({ email: user.email })
       //const userGoogleExist = await UserGoogleModel.findOne({ email: user.email });
-  
-      !userExist && await userModel.create(user)
-      return 201;
 
+      if (!userExist) {
+        await userModel.create(user)
+        return 201
+      } else
+        return 409
     } catch (e) {
       logger.error(e.message);
       return 500;

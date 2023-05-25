@@ -4,4 +4,4 @@ import { userController } from "../controller/userController.js";
 export const userRouter = Router();
 
 userRouter.post("/", userController.save)
-userRouter.get("/auth", userController.autenticate)
+userRouter.post("/auth", userController.autenticate)

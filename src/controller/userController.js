@@ -7,7 +7,7 @@ export const userController = {
 
   save: async (req, res) => {
 
-    const form = req.body.form
+    const form = req.body
 
     bcrypt.hash(form.password, 10, (e, hash) => {
       if (e) {
@@ -34,7 +34,7 @@ export const userController = {
   },
 
   autenticate: async (req, res) => {
-    const data = req.body.user
+    const data = req.body
 
     const user = {
       email: data.email,
@@ -42,7 +42,7 @@ export const userController = {
     }
 
     const userFound = await userRepository.getByEmail(user.email)
-
+    
     if (typeof userFound === "undefined") {
       logger.error(`Authentication ${user.email} failed: Bad Crendentials!`)
       return res.status(401).send()
