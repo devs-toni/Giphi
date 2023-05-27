@@ -20,6 +20,17 @@ export const userRepository = {
     }
   },
 
+  getById: async (_id) => {
+    try {
+      const userFound = await userModel.findOne({ _id })
+      return userFound || undefined
+
+    } catch (e) {
+      logger.error(e.message)
+      return undefined;
+    }
+  },
+
   getByEmail: async (email) => {
     try {
       const userFound = await userModel.findOne({ email });

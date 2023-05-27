@@ -2,6 +2,8 @@ import bcrypt from "bcrypt"
 import { logger } from "../configuration/logger/winston.js";
 import { userRepository } from "../repository/userRepository.js"
 import { jwtGenerateToken } from "../middleware/jwtGenerateToken.js"
+import dotenv from "dotenv"
+dotenv.config()
 
 export const userController = {
 
@@ -42,7 +44,7 @@ export const userController = {
     }
 
     const userFound = await userRepository.getByEmail(user.email)
-    
+
     if (typeof userFound === "undefined") {
       logger.error(`Authentication ${user.email} failed: Bad Crendentials!`)
       return res.status(401).send()
@@ -63,8 +65,10 @@ export const userController = {
           logger.console(`Authentication ${user.email} success!`)
           res.status(200).send({
             token, user: {
+              id: userFound._id,
               userName: userFound.userName,
-              email: userFound.email
+              email: userFound.email,
+              role: userFound.role
             }
           })
         }
@@ -74,4 +78,33 @@ export const userController = {
         }
       })
   },
+
+  validate: async (req, res) => {
+    const user = res.locals.user;
+    /* if (user.password === undefined) {
+      const currentUser = await UserRepository.googleGetById(id);
+
+      const userToSend = {
+        id: currentUser?.id,
+        name: currentUser?.name,
+        last_name: currentUser?.last_name,
+        user_name: currentUser?.user_name,
+        email: currentUser?.email,
+        picture: currentUser?.picture,
+        role: currentUser?.role,
+        type: currentUser?.type,
+      }
+      if (userToSend) return res.status(200).send(userToSend);
+      return res.status(500).send("Something went wrong");
+    } */
+    const currentUser = await userRepository.getById(user.id)
+    const userToSend = {
+      id: currentUser.id,
+      userName: currentUser.userName,
+      email: currentUser.email,
+      role: currentUser.role,
+    }
+
+    return res.status(userToSend ? 200 : 500).send(userToSend);
+  }
 }
