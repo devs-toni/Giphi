@@ -35,6 +35,31 @@ export const userController = {
     })
   },
 
+  authenticateGoogle: async (req, res) => {
+    const googleUser = req.body;
+    const user = {
+      userName: googleUser.firstName,
+      email: googleUser.email,
+      role: "U",
+    }
+
+    const currentUser = await userRepository.getByEmail(user.email)
+  console.log(currentUser)
+    if (typeof currentUser === "undefined") {
+      const userGoogle = await userRepository.save(user);
+
+      if (userGoogle) {
+        const token = await jwtGenerateToken(userGoogle.id);
+        if (token) return res.status(201).send({ token, userGoogle })
+      } else {
+        return res.status(500).send("Filed");
+      }
+    } else {
+      const token = await jwtGenerateToken(currentUser.id);
+      if (token) return res.status(201).send({ token, userGoogle: currentUser })
+    }
+  },
+
   autenticate: async (req, res) => {
     const data = req.body
 
@@ -81,22 +106,20 @@ export const userController = {
 
   validate: async (req, res) => {
     const user = res.locals.user;
-    /* if (user.password === undefined) {
-      const currentUser = await UserRepository.googleGetById(id);
+    console.log(user)
+    if (typeof user?.password === 'undefined') {
+      const currentUser = await userRepository.getById(user.id);
 
       const userToSend = {
-        id: currentUser?.id,
-        name: currentUser?.name,
-        last_name: currentUser?.last_name,
-        user_name: currentUser?.user_name,
-        email: currentUser?.email,
-        picture: currentUser?.picture,
-        role: currentUser?.role,
-        type: currentUser?.type,
+        id: currentUser.id,
+        userName: currentUser.userName,
+        email: currentUser.email,
+        role: currentUser.role,
       }
       if (userToSend) return res.status(200).send(userToSend);
       return res.status(500).send("Something went wrong");
-    } */
+    }
+
     const currentUser = await userRepository.getById(user.id)
     const userToSend = {
       id: currentUser.id,

@@ -6,5 +6,6 @@ export const userRouter = Router();
 
 userRouter.post("/", userController.save)
 userRouter.post("/auth", userController.autenticate)
+userRouter.post("/authgoogle", userController.authenticateGoogle)
 
 userRouter.get("/validate", jwtCheckToken, userController.validate)

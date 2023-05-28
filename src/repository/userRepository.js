@@ -40,5 +40,5 @@ export const userRepository = {
       logger.error(e.message)
       return undefined;
     }
-  },
+  }
 }
