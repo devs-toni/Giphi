@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "86eaeb3e-0ca1-4cad-be4a-fa3180235c82",
+		"name": "Ghipi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"form\": {\r\n        \"userName\": \"toni\",\r\n        \"email\": \"toni\",\r\n        \"password\": \"toni\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4002/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"password\": \"prueba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4002/users/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"users",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmY5OTZkYmQwM2I3YmY1YWRlYTBjYiIsImlhdCI6MTY4NTA1NjExMCwiZXhwIjoxNjg1MTQyNTEwfQ.2GH7QPgUOxh1W3sD1-RQuJQ8HRyJRLPB8pTczzP-ZwI",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4002/users/validate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"users",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gifs",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmY5OTZkYmQwM2I3YmY1YWRlYTBjYiIsImlhdCI6MTY4NTI2ODIyNywiZXhwIjoxNjg1MzU0NjI3fQ.E-oU7r8J4nwSRLY5HoayGlc653Aks1j-8oJk7TMMv6Y",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:4002/gifs/64733169447708fd777f4da4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4002",
+									"path": [
+										"gifs",
+										"64733169447708fd777f4da4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmY5OTZkYmQwM2I3YmY1YWRlYTBjYiIsImlhdCI6MTY4NTI2ODIyNywiZXhwIjoxNjg1MzU0NjI3fQ.E-oU7r8J4nwSRLY5HoayGlc653Aks1j-8oJk7TMMv6Y",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "gif",
+											"type": "file",
+											"src": "/C:/Users/Usuario/Desktop/giphy beatles.gif"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4002/gifs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4002",
+									"path": [
+										"gifs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4002/gifs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4002",
+									"path": [
+										"gifs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Gifs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4002/gifs",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4002",
+									"path": [
+										"gifs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4002/gifs/search/all/cat",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4002",
+									"path": [
+										"gifs",
+										"search",
+										"all",
+										"cat"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "API Trending",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "api.giphy.com/v1/gifs/trending?api_key=L673ORS2cX0tCqdJteFRjXAIZuvZ79KX",
+							"host": [
+								"api",
+								"giphy",
+								"com"
+							],
+							"path": [
+								"v1",
+								"gifs",
+								"trending"
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "L673ORS2cX0tCqdJteFRjXAIZuvZ79KX"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
