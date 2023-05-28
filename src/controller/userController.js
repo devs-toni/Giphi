@@ -10,7 +10,6 @@ export const userController = {
   save: async (req, res) => {
 
     const form = req.body
-
     bcrypt.hash(form.password, 10, (e, hash) => {
       if (e) {
         logger.error(`Register ${form.userName} failed.`)
@@ -44,19 +43,18 @@ export const userController = {
     }
 
     const currentUser = await userRepository.getByEmail(user.email)
-  console.log(currentUser)
     if (typeof currentUser === "undefined") {
       const userGoogle = await userRepository.save(user);
 
       if (userGoogle) {
         const token = await jwtGenerateToken(userGoogle.id);
-        if (token) return res.status(201).send({ token, userGoogle })
+        if (token) return res.status(201).send({ token, userGoogle: userGoogle._doc })
       } else {
         return res.status(500).send("Filed");
       }
     } else {
       const token = await jwtGenerateToken(currentUser.id);
-      if (token) return res.status(201).send({ token, userGoogle: currentUser })
+      if (token) return res.status(201).send({ token, userGoogle: currentUser._doc })
     }
   },
 
