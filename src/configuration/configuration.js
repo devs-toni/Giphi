@@ -22,7 +22,7 @@ const Configuration = {
   },
   production: {
     app: {
-      PORT: PORT || 4000,
+      PORT: PORT || 4002,
       FRONT_URI: "https://giphi.arcprojects.es",
     },
     db: {

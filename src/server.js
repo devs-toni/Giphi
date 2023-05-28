@@ -10,13 +10,16 @@ import Configuration, { ENV } from "./configuration/configuration.js"
 import { headers } from "./middleware/headers.js"
 import { userRouter } from "./router/userRouter.js"
 import { gifRouter } from "./router/gifRouter.js"
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const app = express()
 const { app: env_app } = Configuration;
 const { json } = parser
 
-//app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "public")))
 app.use(express.json())
 app.use(helmet())
 app.use(headers)
