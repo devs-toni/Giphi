@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"form\": {\r\n        \"userName\": \"toni\",\r\n        \"email\": \"toni\",\r\n        \"password\": \"toni\"\r\n    }\r\n}",
+							"raw": "{\r\n        \"userName\": \"toni\",\r\n        \"email\": \"toni\",\r\n        \"password\": \"toni\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -75,7 +75,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmY5OTZkYmQwM2I3YmY1YWRlYTBjYiIsImlhdCI6MTY4NTA1NjExMCwiZXhwIjoxNjg1MTQyNTEwfQ.2GH7QPgUOxh1W3sD1-RQuJQ8HRyJRLPB8pTczzP-ZwI",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmY5OTZkYmQwM2I3YmY1YWRlYTBjYiIsImlhdCI6MTY4NTI3MjEyNCwiZXhwIjoxNjg1MzU4NTI0fQ.7-Gxl-7pgeP6jxIJPIgAzVhLMnAhen47c4Ip8aaTVl4",
 								"type": "default"
 							}
 						],
@@ -102,6 +102,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Google Authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"email\": \"john@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4002/users/authgoogle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"users",
+								"authgoogle"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -123,7 +152,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:4002/gifs/64733169447708fd777f4da4",
+									"raw": "http://localhost:4002/gifs/647333d4447708fd777f4dec",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -131,7 +160,7 @@
 									"port": "4002",
 									"path": [
 										"gifs",
-										"64733169447708fd777f4da4"
+										"647333d4447708fd777f4dec"
 									]
 								}
 							},
@@ -176,16 +205,39 @@
 							"name": "Edit",
 							"request": {
 								"method": "PATCH",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmY5OTZkYmQwM2I3YmY1YWRlYTBjYiIsImlhdCI6MTY4NTI3MTY3MywiZXhwIjoxNjg1MzU4MDczfQ.k_OozSvfMvW3L1gnko5C197XFQ3b5eC5OS7BMR6X5z4",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"gifModifyData\": {\r\n        \"title\": \"pepe\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:4002/gifs",
+									"raw": "http://localhost:4002/gifs/64733404560b505705d58cea",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "4002",
 									"path": [
-										"gifs"
+										"gifs",
+										"64733404560b505705d58cea"
+									],
+									"query": [
+										{
+											"key": "gifId",
+											"value": "",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -256,6 +308,32 @@
 									"key": "api_key",
 									"value": "L673ORS2cX0tCqdJteFRjXAIZuvZ79KX"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User Gifs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NzM4OWRhZjQ1ZTIxYWU3MmJmZDllYSIsImlhdCI6MTY4NTI5NDg1OCwiZXhwIjoxNjg1MzgxMjU4fQ.-IDBriL0S-kDxiNIt4xzYNqdwJuxATsAg0Y2hAYEPyY",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4002/gifs/64734c940761ac8250aa6da5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"gifs",
+								"64734c940761ac8250aa6da5"
 							]
 						}
 					},

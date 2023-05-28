@@ -4,6 +4,7 @@ This project is based on the page Giphy and mocks the gif platform, trying with 
 <br />
 
 ![](./src/assets/home_giphi.png)
+![](./src/assets/swagger_giphi.png)
 <br />
 
 This web application uses on <u><i>frontend</i></u>:
